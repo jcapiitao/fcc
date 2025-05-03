@@ -1,0 +1,28 @@
+# Defines the "core" of a Fedora CoreOS like system; basically (ignition, ostree)
+# plus other default tweaks.  Things in this file should be something we expect
+# basically everyone using both Ignition and (rpm-)ostree to want.
+# It may be used as an inheritance base by other projects like Fedora Silverblue or RHCOS.
+# One good model is to add fedora-coreos-config as a git submodule.  See:
+# https://github.com/coreos/coreos-assembler/pull/639
+
+packages:
+  - ignition
+  - ignition-grub
+  - dracut-network
+  # for encryption
+  - clevis clevis-luks clevis-dracut clevis-systemd
+
+packages-s390x:
+  # for Secure Execution
+  - veritysetup
+
+postprocess:
+  # Undo RPM scripts enabling units; we want the presets to be canonical
+  # https://github.com/projectatomic/rpm-ostree/issues/1803
+  - |
+    #!/usr/bin/env bash
+    set -xeuo pipefail
+    rm -rf /etc/systemd/system/*
+    systemctl preset-all
+    rm -rf /etc/systemd/user/*
+    systemctl --user --global preset-all

@@ -1,0 +1,4 @@
+# Shared with EL 10 (CentOS Stream 10 and RHCOS 10) only
+packages:
+  # GPU Firmware files (not broken out into subpackage of linux-firmware in RHEL yet)
+  - amd-gpu-firmware intel-gpu-firmware nvidia-gpu-firmware

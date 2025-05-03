@@ -1,0 +1,58 @@
+# This file documents currently known-to-fail kola tests. It is consumed by
+# coreos-assembler to automatically skip some tests. For more information,
+# see: https://github.com/coreos/coreos-assembler/pull/866.
+- pattern: coreos.boot-mirror*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1659
+  warn: true
+  arches:
+    - ppc64le
+- pattern: skip-console-warnings
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1889
+  arches:
+    - ppc64le
+- pattern: skip-console-warnings
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1924
+  platforms:
+    - openstack
+  streams:
+    - rawhide
+- pattern: ext.config.kdump.crash
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
+  snooze: 2025-05-12
+  warn: true
+  arches:
+    - aarch64
+  streams:
+    - rawhide
+- pattern: kdump.crash.ssh
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
+  snooze: 2025-05-12
+  warn: true
+  arches:
+    - aarch64
+  streams:
+    - rawhide
+- pattern: kdump.crash.nfs
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1925
+  snooze: 2025-05-12
+  warn: true
+  arches:
+    - aarch64
+  streams:
+    - rawhide
+- pattern: ext.config.root-reprovision.*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1926
+  snooze: 2025-05-06
+  arches:
+    - ppc64le
+  streams:
+    - rawhide
+- pattern: coreos.boot-mirror*
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1932
+  snooze: 2025-05-06
+  arches:
+    - x86_64
+  streams:
+    - rawhide
+- pattern: ext.config.multipath.resilient
+  tracker: https://github.com/coreos/fedora-coreos-tracker/issues/1937

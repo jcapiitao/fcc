@@ -1,0 +1,19 @@
+#!/bin/bash
+## kola:
+##   # Must not run this test with another podman test
+##   exclusive: true
+##   # We only ship moby/docker in FCOS
+##   distros: fcos
+##   # This test pulls a container image from remote sources.
+##   tags: "platform-independent needs-internet"
+##   description: Verify that running a basic container with docker works.
+
+set -xeuo pipefail
+
+# shellcheck disable=SC1091
+. "$KOLA_EXT_DATA/commonlib.sh"
+
+container=$(get_fedora_minimal_container_ref)
+docker run --rm "${container}" true
+
+ok "basic docker run successfully"

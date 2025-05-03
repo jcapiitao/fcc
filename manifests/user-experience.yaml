@@ -1,0 +1,50 @@
+# This file is included in RHEL CoreOS, see
+# https://github.com/openshift/os/blob/71c974b1e456292033e3ef3fe7bcfe17d1855ebc/manifest.yaml#L12
+# Only apply changes here that should apply to both FCOS and RHCOS.
+
+
+# These packages are either widely used utilities/services or
+# are targeted for improving the general CoreOS user experience.
+# It is intended to be kept generic so that it may be shared downstream with
+# RHCOS.
+packages:
+  # Basic user tools
+  - file
+  # File compression/decompression
+  ## bsdtar - dependency of 35coreos-live dracut module
+  - bsdtar
+  - bzip2
+  - gzip
+  - xz
+  - zstd
+  # Improved MOTD experience
+  - console-login-helper-messages-issuegen
+  - console-login-helper-messages-profile
+  - toolbox
+  # passt provides user-mode networking daemons for namespaces
+  - passt
+  # nvme-cli for managing nvme disks
+  - nvme-cli
+  # Used by admins interactively
+  - lsof
+  # Locates executable files' paths in `PATH`
+  - which
+  # provides utilities for inspecting/setting devices connected to the PCI bus
+  - pciutils
+
+conditional-include:
+  - if: basearch != "riscv64"
+    include:
+      packages:
+        # kdump support
+        # https://github.com/coreos/fedora-coreos-tracker/issues/622
+        # The makedumpfile and kdump-utils RPMs were broken out in
+        # Fedora and EL10+. To be able to use the same package list
+        # Across EL9 + Fedora + EL10 let's just name paths for now.
+        # We can go back to just specifying the RPM names when we
+        # no longer support EL9.
+        # TODO: Not built for riscv yet
+        #       https://github.com/coreos/fedora-coreos-tracker/issues/1931
+        - kexec-tools
+        - /usr/share/makedumpfile # makedumpfile RPM
+        - /usr/bin/kdumpctl       # kdump-utils RPM

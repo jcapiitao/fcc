@@ -1,0 +1,22 @@
+# This defines a set of tools that are useful for configuring, debugging,
+# or manipulating the network of a system.  It is desired to keep this list
+# generic enough to be shared downstream with RHCOS.
+
+packages:
+  # Interactive Networking configuration during coreos-install
+  - NetworkManager-tui
+  # Support for cloud quirks and dynamic config in real rootfs:
+  # https://github.com/coreos/fedora-coreos-tracker/issues/320
+  - NetworkManager-cloud-setup
+  # Route QoS
+  - iproute-tc
+  # Firewall manipulation
+  - nftables
+  # Interactive network tools for admins
+  - socat net-tools bind-utils
+  # Declarative network configuration
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1175
+  - nmstate
+  # Advanced custom networking calculations
+  # https://github.com/coreos/fedora-coreos-tracker/issues/1460
+  - ipcalc

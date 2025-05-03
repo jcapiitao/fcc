@@ -1,0 +1,54 @@
+# This lockfile should be used to pin to a package version (`type: pin`) or to
+# fast-track packages ahead of Bodhi (`type: fast-track`). Fast-tracked
+# packages will automatically be removed once they are in the stable repos.
+#
+# IMPORTANT: YAML comments *will not* be preserved. All `pin` overrides *must*
+# include a URL in the `metadata.reason` key. Overrides of type `fast-track`
+# *should* include a Bodhi update URL in the `metadata.bodhi` key and a URL
+# in the `metadata.reason` key, though it's acceptable to omit a `reason`
+# for FCOS-specific packages (ignition, afterburn, etc.).
+
+packages:
+  coreos-installer:
+    evr: 0.24.0-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-a4f321c9d7
+      reason: https://github.com/coreos/coreos-installer/issues/1645
+      type: fast-track
+  coreos-installer-bootinfra:
+    evr: 0.24.0-1.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-a4f321c9d7
+      reason: https://github.com/coreos/coreos-installer/issues/1645
+      type: fast-track
+  dnf5:
+    evr: 5.2.11.0-1.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
+  libdnf5:
+    evr: 5.2.11.0-1.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
+  libdnf5-cli:
+    evr: 5.2.11.0-1.fc42
+    metadata:
+      reason: https://github.com/coreos/fedora-coreos-tracker/issues/1896
+      type: pin
+  rpm-ostree:
+    evr: 2025.7-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-96e470a839
+      type: fast-track
+  rpm-ostree-libs:
+    evr: 2025.7-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-96e470a839
+      type: fast-track
+  zincati:
+    evr: 0.0.30-2.fc42
+    metadata:
+      bodhi: https://bodhi.fedoraproject.org/updates/FEDORA-2025-76cc40dcc4
+      reason: https://github.com/coreos/zincati/issues/1280
+      type: fast-track
